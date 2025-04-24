@@ -35,7 +35,7 @@ const OrderForm = () => {
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md max-w-md mx-auto">
       <h2 className="text-xl font-bold mb-4 text-center">Order Form</h2>
       <div className="space-y-4">
-        <input type="text" name="orderNumber" value={formData.orderNumber} readOnly className="w-full p-2 border rounded" />
+        <input type="text" name="orderNumber" placeholder="Order Number"value={formData.orderNumber} readOnly className="w-full p-2 border rounded" />
 
         <input
           type="text"
@@ -60,6 +60,7 @@ const OrderForm = () => {
         <input
           type="date"
           name="orderDate"
+          placeholder="Order Date"
           value={formData.orderDate}
           onChange={handleChange}
           className="w-full p-2 border rounded"
@@ -88,6 +89,7 @@ const OrderForm = () => {
 
         <select
           name="vendor"
+          placeholder="Vendor"
           value={formData.vendor}
           onChange={handleChange}
           className="w-full p-2 border rounded"
@@ -106,7 +108,7 @@ const OrderForm = () => {
         <input
           type="number"
           name="actualPrice"
-          placeholder="Actual Price (Vendor)"
+          placeholder="Actual Price"
           value={formData.actualPrice}
           onChange={handleChange}
           className="w-full p-2 border rounded"
@@ -116,7 +118,7 @@ const OrderForm = () => {
         <input
           type="number"
           name="sellPrice"
-          placeholder="Sell Price (Customer)"
+          placeholder="Sell Price"
           value={formData.sellPrice}
           onChange={handleChange}
           className="w-full p-2 border rounded"
@@ -125,6 +127,7 @@ const OrderForm = () => {
 
         <select
           name="orderStatus"
+          placeholder="Order Status"
           value={formData.orderStatus}
           onChange={handleChange}
           className="w-full p-2 border rounded"
