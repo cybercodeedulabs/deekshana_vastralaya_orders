@@ -28,7 +28,7 @@ exports.handler = async (event) => {
 
     const data = JSON.parse(event.body);
     const spreadsheetId = process.env.GOOGLE_SHEET_ID;
-    const range = "Orders!A2";
+    const range = "Orders!A2:J";
 
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId,
