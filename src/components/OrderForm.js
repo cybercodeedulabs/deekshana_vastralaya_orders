@@ -139,13 +139,13 @@ const OrderForm = () => {
           required
         >
           <option value="">Select Vendor</option>
-          <option value="Vendor1">Illampillai(Buvana)</option>
-          <option value="Vendor2">VGR</option>
-          <option value="Vendor2">VR Tex</option>
-          <option value="Vendor2">Gowsalya Tex</option>
-          <option value="Vendor2">GS Tex</option>
-          <option value="Vendor2">Bhargavi Collections</option>
-          <option value="Vendor2">Teja Vij</option>
+          <option value="Illampillai(Buvana)">Illampillai(Buvana)</option>
+          <option value="VGR">VGR</option>
+          <option value="VR Tex">VR Tex</option>
+          <option value="Gowsalya Tex">Gowsalya Tex</option>
+          <option value="S Tex">GS Tex</option>
+          <option value="Bhargavi Collections">Bhargavi Collections</option>
+          <option value="Teja Vij">Teja Vij</option>
         </select>
 
         <input
