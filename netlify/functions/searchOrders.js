@@ -37,11 +37,11 @@ exports.handler = async (event) => {
 
     const query = event.queryStringParameters.q || "";
     const filteredRows = rows
-      .map((row, index) => ({ index: index + 1, row })) // Include row index
-      .filter((entry) =>
-        entry.row[1]?.toLowerCase().includes(query.toLowerCase()) // Adjust index to match "Customer Name"
-      );
-
+    .slice(1) // Skip header
+    .map((row, index) => ({ index: index + 2, row })) // Index +2 since we sliced off first row
+    .filter((entry) =>
+      entry.row[1]?.toLowerCase().includes(query.toLowerCase())
+    );
     return {
       statusCode: 200,
       body: JSON.stringify(filteredRows),

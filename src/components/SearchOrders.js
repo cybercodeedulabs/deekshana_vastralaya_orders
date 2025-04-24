@@ -7,6 +7,7 @@ const SearchOrders = () => {
   const [editData, setEditData] = useState({});
 
   const handleSearch = async () => {
+    if (!query.trim()) return;
     try {
       const response = await fetch(
         `/.netlify/functions/searchOrders?q=${encodeURIComponent(query)}`

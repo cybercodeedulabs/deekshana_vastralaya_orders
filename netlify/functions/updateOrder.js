@@ -19,6 +19,12 @@ exports.handler = async (event) => {
     const sheets = google.sheets({ version: "v4", auth });
 
     const { rowIndex, ...updatedData } = JSON.parse(event.body);
+    if (!rowIndex || Object.keys(updatedData).length < 10) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Invalid request data" }),
+      };
+    }
     const spreadsheetId = process.env.GOOGLE_SHEET_ID;
 
     const range = `Orders!A${rowIndex}:J${rowIndex}`; // Target specific row
