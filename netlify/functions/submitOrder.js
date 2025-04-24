@@ -1,5 +1,5 @@
 const { google } = require("googleapis");
-require("dotenv").config(); // Load environment variables from .env file
+require("dotenv").config();
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -7,24 +7,30 @@ exports.handler = async (event) => {
   }
 
   try {
-    // Parse the service account key from the environment variable
+    if (!process.env.GOOGLE_SERVICE_ACCOUNT_KEY || !process.env.GOOGLE_SHEET_ID) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Environment variables not configured properly" }),
+      };
+    }
+
     const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
     const { client_email, private_key } = credentials;
 
     const auth = new google.auth.JWT(
       client_email,
       null,
-      private_key.replace(/\\n/g, "\n"), // Convert escaped \n back to actual newlines
+      private_key, // Assuming proper newlines
       ["https://www.googleapis.com/auth/spreadsheets"]
     );
 
     const sheets = google.sheets({ version: "v4", auth });
 
     const data = JSON.parse(event.body);
-    const spreadsheetId = process.env.GOOGLE_SHEET_ID; // Use the ID from .env
-    const range = "Orders!A1"; // Replace with your sheet name and range
+    const spreadsheetId = process.env.GOOGLE_SHEET_ID;
+    const range = "Orders!A1";
 
-    await sheets.spreadsheets.values.append({
+    const response = await sheets.spreadsheets.values.append({
       spreadsheetId,
       range,
       valueInputOption: "RAW",
@@ -46,12 +52,14 @@ exports.handler = async (event) => {
       },
     });
 
+    console.log("Google Sheets response:", response.data);
+
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true }),
     };
   } catch (error) {
-    console.error(error);
+    console.error("Error details:", error.response?.data || error.message || error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Failed to submit order" }),
