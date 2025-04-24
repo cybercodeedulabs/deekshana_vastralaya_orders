@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from './assets/logo.png';  // Ensure the correct path for logo
+import Header from "./components/Header";  // Header component import
+import Hero from "./components/Hero";  // Hero component import
+import Footer from "./components/Footer";  // Footer component import
+import OrderForm from "./components/OrderForm";  // Import OrderForm
+import SearchOrders from "./components/SearchOrders";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header logo={logo} />
+      <Hero />
+      <OrderForm />  {/* Include the OrderForm component */}
+      <SearchOrders />
+      <Footer />
     </div>
   );
 }
