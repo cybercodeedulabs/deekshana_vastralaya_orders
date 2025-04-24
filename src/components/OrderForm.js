@@ -25,17 +25,60 @@ const OrderForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
-    // TODO: Send data to Google Sheets API
+
+    try {
+      const response = await fetch("/.netlify/functions/submitOrder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Send form data to backend
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Order submitted successfully:", result);
+        alert("Order submitted successfully!");
+
+        // Reset the form
+        setFormData({
+          orderNumber: Math.floor(Math.random() * 1000000), // Generate a new order number
+          customerName: "",
+          product: "",
+          orderDate: "",
+          quantity: "",
+          customerAddress: "",
+          vendor: "",
+          actualPrice: "",
+          sellPrice: "",
+          orderStatus: "Pending", // Reset to default value
+        });
+      } else {
+        const errorData = await response.json();
+        console.error("Error submitting order:", errorData);
+        alert("Failed to submit order. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      alert("An error occurred while submitting the order.");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md max-w-md mx-auto">
       <h2 className="text-xl font-bold mb-4 text-center">Order Form</h2>
       <div className="space-y-4">
-        <input type="text" name="orderNumber" placeholder="Order Number"value={formData.orderNumber} readOnly className="w-full p-2 border rounded" />
+        <input
+          type="text"
+          name="orderNumber"
+          placeholder="Order Number"
+          value={formData.orderNumber}
+          readOnly
+          className="w-full p-2 border rounded"
+        />
 
         <input
           type="text"
@@ -137,7 +180,10 @@ const OrderForm = () => {
           <option value="Delivered">Delivered</option>
         </select>
 
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition">
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition"
+        >
           Submit
         </button>
       </div>

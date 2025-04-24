@@ -20,7 +20,7 @@ exports.handler = async (event) => {
     const auth = new google.auth.JWT(
       client_email,
       null,
-      private_key, // Assuming proper newlines
+      private_key.replace(/\\n/g, '\n'), // Assuming proper newlines
       ["https://www.googleapis.com/auth/spreadsheets"]
     );
 
