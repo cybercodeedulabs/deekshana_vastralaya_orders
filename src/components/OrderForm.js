@@ -146,6 +146,7 @@ const OrderForm = () => {
           <option value="S Tex">GS Tex</option>
           <option value="Bhargavi Collections">Bhargavi Collections</option>
           <option value="Teja Vij">Teja Vij</option>
+          <option value="Homestock">Homestock</option>
         </select>
 
         <input
