@@ -11,10 +11,18 @@ function Header({ logo }) {  // Accept logo as prop
 
       {/* Navigation */}
       <nav className="space-x-4">
-        <a href="#" className="hover:underline">Home</a>
-        <a href="#" className="hover:underline">Orders</a>
-        <a href="#" className="hover:underline">About</a>
-        <a href="#" className="hover:underline">Contact</a>
+      <button className="hover:underline bg-transparent text-white border-none cursor-pointer">
+          Home
+        </button>
+        <button className="hover:underline bg-transparent text-white border-none cursor-pointer">
+          Orders
+        </button>
+        <button className="hover:underline bg-transparent text-white border-none cursor-pointer">
+          About
+        </button>
+        <button className="hover:underline bg-transparent text-white border-none cursor-pointer">
+          Contact
+        </button>
       </nav>
     </header>
   );
