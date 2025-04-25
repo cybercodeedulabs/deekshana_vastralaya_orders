@@ -75,7 +75,7 @@ const SearchOrders = () => {
           <ul>
             {results.map((result, index) => (
               <li key={index} className="border-b p-2">
-                {result.row[1]} - {result.row[2]} - {result.row[9]}{" "}
+                {result.row[1]} - {result.row[2]} - {result.row[3]} - {result.row[4]} - {result.row[5]} - {result.row[6]} - {result.row[7]} - {result.row[8]} - {result.row[9]}{" "}
                 <button
                   onClick={() => handleEdit(result)}
                   className="ml-2 px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700"
@@ -111,7 +111,7 @@ const SearchOrders = () => {
             className="border rounded p-2 w-full mb-2"
           />
           <input
-            type="text"
+            type="date"
             value={editData.orderDate}
             onChange={(e) =>
               setEditData({ ...editData, orderDate: e.target.value })
