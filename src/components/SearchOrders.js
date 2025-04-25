@@ -101,6 +101,24 @@ const SearchOrders = () => {
             placeholder="Customer Name"
             className="border rounded p-2 w-full mb-2"
           />
+          <input
+            type="text"
+            value={editData.product}
+            onChange={(e) =>
+              setEditData({ ...editData, product: e.target.value })
+            }
+            placeholder="Product"
+            className="border rounded p-2 w-full mb-2"
+          />
+          <input
+            type="text"
+            value={editData.orderDate}
+            onChange={(e) =>
+              setEditData({ ...editData, orderDate: e.target.value })
+            }
+            placeholder="Order Date"
+            className="border rounded p-2 w-full mb-2"
+          />
           {/* Add inputs for other fields similarly */}
           <button
             onClick={handleUpdate}
